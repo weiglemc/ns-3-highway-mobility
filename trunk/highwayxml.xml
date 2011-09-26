@@ -1,0 +1,230 @@
+<highwayProject numberOfRuns="1" totalTimeInSeconds="30" dt="0.1">
+  <highways>
+    <highway highwayId="1" numberOfLanes="2" direction="0.0" length="50.0" startX="-150.0" startY="10.0" leftTurnSpeed="2.2352" rightTurnSpeed="2.2352" laneWidth="5.0">
+      <frontHighways>
+        <highwayConnection highwayId="2" laneOffset="0" offset="-1"/>
+      </frontHighways>
+    </highway>
+    <highway highwayId="2" numberOfLanes="3" direction="0.0" length="100.0" startX="-100.0" startY="12.5" leftTurnSpeed="2.2352" rightTurnSpeed="2.2352" laneWidth="5.0">
+      <frontHighways>
+        <highwayConnection highwayId="3" laneOffset="1" offset="1"/>
+      </frontHighways>
+      <backHighways>
+        <highwayConnection highwayId="1" laneOffset="1" offset="1"/>
+      </backHighways>
+      <rightHighways>
+        <highwayConnection highwayId="6" laneOffset="2" offset="2"/>
+      </rightHighways>
+      <leftHighways>
+        <highwayConnection highwayId="5" laneOffset="0" offset="0"/>
+      </leftHighways>
+    </highway>
+    <highway highwayId="3" numberOfLanes="2" direction="0.0" length="40.0" startX="0.0" startY="10.0" leftTurnSpeed="2.2352" rightTurnSpeed="2.2352" laneWidth="5.0">
+      <frontHighways>
+        <highwayConnection highwayId="4" laneOffset="0" offset="0"/>
+      </frontHighways>
+      <backHighways>
+        <highwayConnection highwayId="2" laneOffset="0" offset="-1"/>
+      </backHighways>
+    </highway>
+    <highway highwayId="4" numberOfLanes="2" direction="0.0" length="150.0" startX="40.0" startY="10.0" leftTurnSpeed="2.2352" rightTurnSpeed="2.2352" laneWidth="5.0">
+      <backHighways>
+        <highwayConnection highwayId="3" laneOffset="0" offset="0"/>
+      </backHighways>
+    </highway>
+    <highway highwayId="5" numberOfLanes="1" direction="0.7853981633974483" length="31.81980515339464" startX="0.0" startY="17.5" leftTurnSpeed="2.2352" rightTurnSpeed="2.2352" laneWidth="5.0">
+      <frontHighways>
+        <highwayConnection highwayId="22" laneOffset="0" offset="0"/>
+      </frontHighways>
+      <backHighways>
+        <highwayConnection highwayId="2" laneOffset="0" offset="0"/>
+      </backHighways>
+    </highway>
+    <highway highwayId="6" numberOfLanes="1" direction="5.497787143782138" length="10.606601717798213" startX="0.0" startY="7.5" leftTurnSpeed="2.2352" rightTurnSpeed="2.2352" laneWidth="5.0">
+      <frontHighways>
+        <highwayConnection highwayId="16" laneOffset="0" offset="-1"/>
+      </frontHighways>
+      <backHighways>
+        <highwayConnection highwayId="2" laneOffset="0" offset="-2"/>
+      </backHighways>
+    </highway>
+    <highway highwayId="7" numberOfLanes="2" direction="3.141592653589793" length="50.0" startX="190.0" startY="30.0" leftTurnSpeed="2.2352" rightTurnSpeed="2.2352" laneWidth="5.0">
+      <frontHighways>
+        <highwayConnection highwayId="8" laneOffset="0" offset="-1"/>
+      </frontHighways>
+    </highway>
+    <highway highwayId="8" numberOfLanes="3" direction="3.141592653589793" length="100.0" startX="140.0" startY="27.5" leftTurnSpeed="2.2352" rightTurnSpeed="2.2352" laneWidth="5.0">
+      <frontHighways>
+        <highwayConnection highwayId="9" laneOffset="1" offset="1"/>
+      </frontHighways>
+      <backHighways>
+        <highwayConnection highwayId="7" laneOffset="1" offset="1"/>
+      </backHighways>
+      <rightHighways>
+        <highwayConnection highwayId="12" laneOffset="2" offset="2"/>
+      </rightHighways>
+      <leftHighways>
+        <highwayConnection highwayId="11" laneOffset="0" offset="0"/>
+      </leftHighways>
+    </highway>
+    <highway highwayId="9" numberOfLanes="2" direction="3.141592653589793" length="40.0" startX="40.0" startY="30.0" leftTurnSpeed="2.2352" rightTurnSpeed="2.2352" laneWidth="5.0">
+      <frontHighways>
+        <highwayConnection highwayId="10" laneOffset="0" offset="0"/>
+      </frontHighways>
+      <backHighways>
+        <highwayConnection highwayId="8" laneOffset="0" offset="-1"/>
+      </backHighways>
+    </highway>
+    <highway highwayId="10" numberOfLanes="2" direction="3.141592653589793" length="150.0" startX="0.0" startY="30.0" leftTurnSpeed="2.2352" rightTurnSpeed="2.2352" laneWidth="5.0">
+      <backHighways>
+        <highwayConnection highwayId="9" laneOffset="0" offset="0"/>
+      </backHighways>
+    </highway>
+    <highway highwayId="11" numberOfLanes="1" direction="3.8273221644960795" length="35.531676008879735" startX="40.0" startY="22.5" leftTurnSpeed="2.2352" rightTurnSpeed="2.2352" laneWidth="5.0">
+      <frontHighways>
+        <highwayConnection highwayId="16" laneOffset="0" offset="0"/>
+      </frontHighways>
+      <backHighways>
+        <highwayConnection highwayId="8" laneOffset="0" offset="0"/>
+      </backHighways>
+    </highway>
+    <highway highwayId="12" numberOfLanes="1" direction="2.356194490192345" length="10.606601717798213" startX="40.0" startY="32.5" leftTurnSpeed="2.2352" rightTurnSpeed="2.2352" laneWidth="5.0">
+      <frontHighways>
+        <highwayConnection highwayId="22" laneOffset="0" offset="-1"/>
+      </frontHighways>
+      <backHighways>
+        <highwayConnection highwayId="8" laneOffset="0" offset="-2"/>
+      </backHighways>
+    </highway>
+    <highway highwayId="13" numberOfLanes="2" direction="4.71238898038469" length="50.0" startX="10.0" startY="190.0" leftTurnSpeed="2.2352" rightTurnSpeed="2.2352" laneWidth="5.0">
+      <frontHighways>
+        <highwayConnection highwayId="14" laneOffset="0" offset="-1"/>
+      </frontHighways>
+    </highway>
+    <highway highwayId="14" numberOfLanes="3" direction="4.71238898038469" length="100.0" startX="12.5" startY="140.0" leftTurnSpeed="2.2352" rightTurnSpeed="2.2352" laneWidth="5.0">
+      <frontHighways>
+        <highwayConnection highwayId="15" laneOffset="1" offset="1"/>
+      </frontHighways>
+      <backHighways>
+        <highwayConnection highwayId="13" laneOffset="1" offset="1"/>
+      </backHighways>
+      <rightHighways>
+        <highwayConnection highwayId="18" laneOffset="2" offset="2"/>
+      </rightHighways>
+      <leftHighways>
+        <highwayConnection highwayId="17" laneOffset="0" offset="0"/>
+      </leftHighways>
+    </highway>
+    <highway highwayId="15" numberOfLanes="2" direction="4.71238898038469" length="40.0" startX="10.0" startY="40.0" leftTurnSpeed="2.2352" rightTurnSpeed="2.2352" laneWidth="5.0">
+      <frontHighways>
+        <highwayConnection highwayId="16" laneOffset="0" offset="0"/>
+      </frontHighways>
+      <backHighways>
+        <highwayConnection highwayId="14" laneOffset="0" offset="-1"/>
+      </backHighways>
+    </highway>
+    <highway highwayId="16" numberOfLanes="2" direction="4.71238898038469" length="150.0" startX="10.0" startY="0.0" leftTurnSpeed="2.2352" rightTurnSpeed="2.2352" laneWidth="5.0">
+      <backHighways>
+        <highwayConnection highwayId="15" laneOffset="0" offset="0"/>
+      </backHighways>
+    </highway>
+    <highway highwayId="17" numberOfLanes="1" direction="5.398118491290976" length="35.531676008879735" startX="17.5" startY="40.0" leftTurnSpeed="2.2352" rightTurnSpeed="2.2352" laneWidth="5.0">
+      <frontHighways>
+        <highwayConnection highwayId="4" laneOffset="0" offset="0"/>
+      </frontHighways>
+      <backHighways>
+        <highwayConnection highwayId="14" laneOffset="0" offset="0"/>
+      </backHighways>
+    </highway>
+    <highway highwayId="18" numberOfLanes="1" direction="3.9269908169872414" length="10.606601717798213" startX="7.5" startY="40.0" leftTurnSpeed="2.2352" rightTurnSpeed="2.2352" laneWidth="5.0">
+      <frontHighways>
+        <highwayConnection highwayId="4" laneOffset="0" offset="-1"/>
+      </frontHighways>
+      <backHighways>
+        <highwayConnection highwayId="20" laneOffset="0" offset="-2"/>
+      </backHighways>
+    </highway>
+    <highway highwayId="19" numberOfLanes="2" direction="1.5707963267948966" length="50.0" startX="30.0" startY="-150.0" leftTurnSpeed="2.2352" rightTurnSpeed="2.2352" laneWidth="5.0">
+      <frontHighways>
+        <highwayConnection highwayId="20" laneOffset="0" offset="-1"/>
+      </frontHighways>
+    </highway>
+    <highway highwayId="20" numberOfLanes="3" direction="1.5707963267948966" length="100.0" startX="27.5" startY="-100.0" leftTurnSpeed="2.2352" rightTurnSpeed="2.2352" laneWidth="5.0">
+      <frontHighways>
+        <highwayConnection highwayId="21" laneOffset="1" offset="1"/>
+      </frontHighways>
+      <backHighways>
+        <highwayConnection highwayId="19" laneOffset="1" offset="1"/>
+      </backHighways>
+      <rightHighways>
+        <highwayConnection highwayId="24" laneOffset="2" offset="2"/>
+      </rightHighways>
+      <leftHighways>
+        <highwayConnection highwayId="23" laneOffset="0" offset="0"/>
+      </leftHighways>
+    </highway>
+    <highway highwayId="21" numberOfLanes="2" direction="1.5707963267948966" length="40.0" startX="30.0" startY="0.0" leftTurnSpeed="2.2352" rightTurnSpeed="2.2352" laneWidth="5.0">
+      <frontHighways>
+        <highwayConnection highwayId="22" laneOffset="0" offset="0"/>
+      </frontHighways>
+      <backHighways>
+        <highwayConnection highwayId="20" laneOffset="0" offset="-1"/>
+      </backHighways>
+    </highway>
+    <highway highwayId="22" numberOfLanes="2" direction="1.5707963267948966" length="150.0" startX="30.0" startY="40.0" leftTurnSpeed="2.2352" rightTurnSpeed="2.2352" laneWidth="5.0">
+      <backHighways>
+        <highwayConnection highwayId="21" laneOffset="0" offset="0"/>
+      </backHighways>
+    </highway>
+    <highway highwayId="23" numberOfLanes="1" direction="2.256525837701183" length="35.531676008879735" startX="22.5" startY="0.0" leftTurnSpeed="2.2352" rightTurnSpeed="2.2352" laneWidth="5.0">
+      <frontHighways>
+        <highwayConnection highwayId="10" laneOffset="0" offset="0"/>
+      </frontHighways>
+      <backHighways>
+        <highwayConnection highwayId="20" laneOffset="0" offset="0"/>
+      </backHighways>
+    </highway>
+    <highway highwayId="24" numberOfLanes="1" direction="0.7853981633974483" length="10.606601717798213" startX="32.5" startY="0.0" leftTurnSpeed="2.2352" rightTurnSpeed="2.2352" laneWidth="5.0"/>
+  </highways>
+  <wifiConfigurations>
+    <wifiConfiguration wifiConfigId="1" wifiStandard="WIFI_PHY_STANDARD_80211a" dataMode="OfdmRate6MbpsBW10MHz" txPowerStart="21.5" txPowerEnd="21.5" txPowerLevels="1" txGain="2.0" rxGain="2.0" energyDetectionThreshold="-101.0"/>
+  </wifiConfigurations>
+  <vehicleGenerators>
+    <vehicleGenerator highwayId="1" wifiConfigId="1" flow="1.0" velocity="20.1168" minGap="45.0" penetrationRate="100.0">
+      <destination weight="0.3" destinationId="22"/>
+      <destination weight="0.3" destinationId="16"/>
+      <destination weight="0.4" destinationId="4"/>
+    </vehicleGenerator>
+    <vehicleGenerator highwayId="7" wifiConfigId="1" flow="1.0" velocity="20.1168" minGap="45.0" penetrationRate="100.0">
+      <destination weight="0.3" destinationId="16"/>
+      <destination weight="0.3" destinationId="22"/>
+      <destination weight="0.4" destinationId="10"/>
+    </vehicleGenerator>
+    <vehicleGenerator highwayId="13" wifiConfigId="1" flow="1.0" velocity="20.1168" minGap="45.0" penetrationRate="100.0">
+      <destination weight="0.3" destinationId="10"/>
+      <destination weight="0.3" destinationId="4"/>
+      <destination weight="0.4" destinationId="16"/>
+    </vehicleGenerator>
+    <vehicleGenerator highwayId="19" wifiConfigId="1" flow="1.0" velocity="20.1168" minGap="45.0" penetrationRate="100.0">
+      <destination weight="0.3" destinationId="4"/>
+      <destination weight="0.3" destinationId="10"/>
+      <destination weight="0.4" destinationId="22"/>
+    </vehicleGenerator>
+  </vehicleGenerators>
+  <trafficLightGenerators>
+    <trafficGenerator timeLeft="20.0" timeStraight="40.0" timeBuffer="5.0">
+      <trafficPoint side="LEFT" highwayId="2" distance="95.0">
+        <leftTurnLane>1</leftTurnLane>
+      </trafficPoint>
+      <trafficPoint side="RIGHT" highwayId="8" distance="95.0">
+        <leftTurnLane>1</leftTurnLane>
+      </trafficPoint>
+      <trafficPoint side="TOP" highwayId="14" distance="95.0">
+        <leftTurnLane>1</leftTurnLane>
+      </trafficPoint>
+      <trafficPoint side="BOTTOM" highwayId="20" distance="95.0">
+        <leftTurnLane>1</leftTurnLane>
+      </trafficPoint>
+    </trafficGenerator>
+  </trafficLightGenerators>
+</highwayProject>

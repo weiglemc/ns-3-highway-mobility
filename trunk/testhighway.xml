@@ -1,0 +1,60 @@
+<highwayProject numberOfRuns="1" totalTimeInSeconds="30" dt="0.1">
+  <highways>
+    <highway highwayId="1" numberOfLanes="2" direction="0.0" length="60.0" startX="0.0" startY="60.0" leftTurnSpeed="4.46" rightTurnSpeed="4.46" laneWidth="5.0">
+      <frontHighways>
+        <highwayConnection highwayId="3" laneOffset="0" offset="0"/>
+      </frontHighways>
+      <rightHighways>
+        <highwayConnection highwayId="2" laneOffset="1" offset="1"/>
+      </rightHighways>
+    </highway>
+    <highway highwayId="2" numberOfLanes="1" direction="4.71238898" length="60.0" startX="60.0" startY="57.5" leftTurnSpeed="4.46" rightTurnSpeed="4.46" laneWidth="5.0">
+      <backHighways>
+        <highwayConnection highwayId="1" laneOffset="0" offset="-1"/>
+      </backHighways>
+    </highway>
+    <highway highwayId="3" numberOfLanes="2" direction="0.0" length="20.0" startX="60.0" startY="60.0" leftTurnSpeed="4.46" rightTurnSpeed="4.46" laneWidth="5.0">
+      <frontHighways>
+        <highwayConnection highwayId="4" laneOffset="0" offset="-1"/>
+      </frontHighways>
+      <backHighways>
+        <highwayConnection highwayId="1" laneOffset="0" offset="0"/>
+      </backHighways>
+    </highway>
+    <highway highwayId="4" numberOfLanes="3" direction="0.0" length="20.0" startX="80.0" startY="62.5" leftTurnSpeed="4.46" rightTurnSpeed="4.46" laneWidth="5.0">
+      <frontHighways>
+        <highwayConnection highwayId="6" laneOffset="1" offset="1"/>
+      </frontHighways>
+      <backHighways>
+        <highwayConnection highwayId="3" laneOffset="1" offset="1"/>
+      </backHighways>
+      <leftHighways>
+        <highwayConnection highwayId="100" laneOffset="0" offset="0"/>
+      </leftHighways>
+    </highway>
+    <highway highwayId="100" numberOfLanes="1" direction="0.785398163" length="30.0" startX="100.0" startY="67.5" leftTurnSpeed="4.46" rightTurnSpeed="4.46" laneWidth="5.0">
+      <frontHighways>
+        <highwayConnection highwayId="5" laneOffset="0" offset="0"/>
+      </frontHighways>
+      <backHighways>
+        <highwayConnection highwayId="4" laneOffset="0" offset="0"/>
+      </backHighways>
+    </highway>
+    <highway highwayId="5" numberOfLanes="1" direction="1.57079633" length="50.0" startX="120.776" startY="88.2765" leftTurnSpeed="4.46" rightTurnSpeed="4.46" laneWidth="5.0">
+      <backHighways>
+        <highwayConnection highwayId="100" laneOffset="0" offset="0"/>
+      </backHighways>
+    </highway>
+    <highway highwayId="6" numberOfLanes="2" direction="0.0" length="60.0" startX="100.0" startY="60.0" leftTurnSpeed="4.46" rightTurnSpeed="4.46" laneWidth="5.0">
+      <backHighways>
+        <highwayConnection highwayId="4" laneOffset="0" offset="-1"/>
+      </backHighways>
+    </highway>
+  </highways>
+  <wifiConfigurations>
+    <wifiConfiguration wifiConfigId="1" wifiStandard="WIFI_PHY_STANDARD_80211a" dataMode="OfdmRate6MbpsBW10MHz" txPowerStart="21.5" txPowerEnd="21.5" txPowerLevels="1" txGain="2.0" rxGain="2.0" energyDetectionThreshold="-101.0"/>
+  </wifiConfigurations>
+  <vehicleGenerators>
+    <vehicleGenerator highwayId="1" wifiConfigId="1" flow="1.0" velocity="11.176" minGap="33.0" penetrationRate="100.0"/>
+  </vehicleGenerators>
+</highwayProject>
