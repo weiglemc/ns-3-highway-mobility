@@ -16,6 +16,7 @@
  * Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
  *
  * Author: Hadi Arbabi <marbabi@cs.odu.edu>
+ *         Brdaley Dupont <bdupont@cs.odu.edu>
  */
 
 #ifndef CLASS_VEHICLE_
@@ -173,10 +174,16 @@ namespace ns3 {
          */
         void SetLength(double value);
         /**
-         * Handle destinations
-         * */
+         * Adds a destination to the top of the destination stack
+         */
         void AddDestination(int destinationId);
+        /**
+         * Returns the destination on the top of the stack. -100000 if empty
+         */
         int GetDestination();
+        /*
+         * Pops the destination off of the top of the stack
+         */
         void ArriveAtDestination();
         /**
          * \returns the width of the Vehicle.
@@ -245,8 +252,11 @@ namespace ns3 {
         virtual void TranslateVelocity(double dt);
         /**
          * \param frontOld the Vehicle in the front at the same lane.
+         * \param distanceFOld the distance to frontOld
          * \param frontNew the Vehicle in the front at the target lane.
+         * \param distanceFNew the distance to frontNew
          * \param backNew the Vehicle in back at the target lane.
+         * \param distanceBNew the distance to backNew
          * \param toLeft the inclination for the target lane. True: target lane is left, False: target lane is right.
          * \returns true if the change of the lane is possible for the Vehicle.
          */

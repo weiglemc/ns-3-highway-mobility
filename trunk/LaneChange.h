@@ -97,8 +97,11 @@ namespace ns3 {
         /**
          * \param me the current considered Vehicle.
          * \param fOld the front Vehicle in the current lane.
+         * \param distanceFOld the distance from the current vehicle to fOld
          * \param fNew the front Vehicle in the target lane (left or right) based on value of toLeft.
+         * \param distanceFNew the distance from where the current vehicle would be in the target lane to fNew
          * \param bNew the back  Vehicle in the target lane (left or right) based on value of toLeft.
+         * \param distanceBNew the distance where where the current vehicle would be in the taget lane to bNew
          * \param toLeft true if the adjacent target lane is on the left, false if the adjacent target lane is on the right.
          * \returns true if changing lane for the Vehicle (me) to the target lane is possible, false otherwise.
          *

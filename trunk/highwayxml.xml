@@ -1,4 +1,4 @@
-<highwayProject numberOfRuns="1" totalTimeInSeconds="30" dt="0.1">
+<highwayProject numberOfRuns="1" totalTimeInSeconds="120" dt="0.1">
   <highways>
     <highway highwayId="1" numberOfLanes="2" direction="0.0" length="50.0" startX="-150.0" startY="10.0" leftTurnSpeed="2.2352" rightTurnSpeed="2.2352" laneWidth="5.0">
       <frontHighways>
@@ -32,7 +32,7 @@
         <highwayConnection highwayId="3" laneOffset="0" offset="0"/>
       </backHighways>
     </highway>
-    <highway highwayId="5" numberOfLanes="1" direction="0.7853981633974483" length="31.81980515339464" startX="0.0" startY="17.5" leftTurnSpeed="2.2352" rightTurnSpeed="2.2352" laneWidth="5.0">
+    <highway highwayId="5" numberOfLanes="1" direction="0.6857295109062862" length="35.531676008879735" startX="0.0" startY="17.5" leftTurnSpeed="2.2352" rightTurnSpeed="2.2352" laneWidth="5.0">
       <frontHighways>
         <highwayConnection highwayId="22" laneOffset="0" offset="0"/>
       </frontHighways>
@@ -190,22 +190,22 @@
     <wifiConfiguration wifiConfigId="1" wifiStandard="WIFI_PHY_STANDARD_80211a" dataMode="OfdmRate6MbpsBW10MHz" txPowerStart="21.5" txPowerEnd="21.5" txPowerLevels="1" txGain="2.0" rxGain="2.0" energyDetectionThreshold="-101.0"/>
   </wifiConfigurations>
   <vehicleGenerators>
-    <vehicleGenerator highwayId="1" wifiConfigId="1" flow="1.0" velocity="20.1168" minGap="45.0" penetrationRate="100.0">
+    <vehicleGenerator highwayId="1" wifiConfigId="1" flow="1.0" lowVelocity="18.1168" highVelocity="23.1168" minGap="45.0" penetrationRate="100.0">
       <destination weight="0.3" destinationId="22"/>
       <destination weight="0.3" destinationId="16"/>
       <destination weight="0.4" destinationId="4"/>
     </vehicleGenerator>
-    <vehicleGenerator highwayId="7" wifiConfigId="1" flow="1.0" velocity="20.1168" minGap="45.0" penetrationRate="100.0">
+    <vehicleGenerator highwayId="7" wifiConfigId="1" flow="1.0" lowVelocity="18.1168" highVelocity="23.1168" minGap="45.0" penetrationRate="100.0">
       <destination weight="0.3" destinationId="16"/>
       <destination weight="0.3" destinationId="22"/>
       <destination weight="0.4" destinationId="10"/>
     </vehicleGenerator>
-    <vehicleGenerator highwayId="13" wifiConfigId="1" flow="1.0" velocity="20.1168" minGap="45.0" penetrationRate="100.0">
+    <vehicleGenerator highwayId="13" wifiConfigId="1" flow="1.0" lowVelocity="18.1168" highVelocity="23.1168" minGap="45.0" penetrationRate="100.0">
       <destination weight="0.3" destinationId="10"/>
       <destination weight="0.3" destinationId="4"/>
       <destination weight="0.4" destinationId="16"/>
     </vehicleGenerator>
-    <vehicleGenerator highwayId="19" wifiConfigId="1" flow="1.0" velocity="20.1168" minGap="45.0" penetrationRate="100.0">
+    <vehicleGenerator highwayId="19" wifiConfigId="1" flow="1.0" lowVelocity="18.1168" highVelocity="23.1168" minGap="45.0" penetrationRate="100.0">
       <destination weight="0.3" destinationId="4"/>
       <destination weight="0.3" destinationId="10"/>
       <destination weight="0.4" destinationId="22"/>

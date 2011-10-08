@@ -97,6 +97,7 @@ namespace ns3 {
         double m_rightTurnSpeed; // the speed to set a vehicle to before it turns right
         bool m_stopped; // true, if the highway manager is stopped.
         bool m_changeLaneSet; // true, if we desire the vehicles be able to change their lanes with IDM/MOBIL conditions.
+        int m_loop; // counts the current loop
 
         Ptr<Vehicle> m_tempVehicles[2]; // temp vehicles.
         double m_tempDistances[2]; // distances to temp vehicles

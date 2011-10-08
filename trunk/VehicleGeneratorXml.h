@@ -9,6 +9,9 @@
 #define	_VEHICLEGENERATORXML_H
 
 #include "tinyxml.h"
+#include <map>
+#include <utility>
+#include <list>
 
 using namespace std;
 
@@ -17,10 +20,11 @@ private:
     int m_highwayId;
     int m_wifiConfigId;
     double m_flow;
-    double m_velocity;
+    double m_lowVelocity;
+    double m_highVelocity;
     double m_minGap;
     double m_penetrationRate;
-    map<double, int> m_destinationMap;
+    list<pair<double, int> > m_destinationMap;
 public:
 
     double GetFlow() {
@@ -55,12 +59,20 @@ public:
         m_penetrationRate = penetrationRate;
     }
 
-    double GetVelocity() {
-        return m_velocity;
+    double GetLowVelocity() {
+        return m_lowVelocity;
     }
 
-    void SetVelocity(double velocity) {
-        m_velocity = velocity;
+    void SetLowVelocity(double lowVelocity) {
+        m_lowVelocity = lowVelocity;
+    }
+
+    double GetHighVelocity() {
+        return m_highVelocity;
+    }
+
+    void SetHighVelocity(double highVelocity) {
+        m_highVelocity = highVelocity;
     }
 
     int GetWifiConfigId() {
@@ -71,11 +83,11 @@ public:
         m_wifiConfigId = wifiConfigId;
     }
 
-    map<double, int> GetDestinationMap() {
+    list<pair<double, int> > GetDestinationMap() {
         return m_destinationMap;
     }
 
-    void SetDestinationMap(map<double, int> destinationMap) {
+    void SetDestinationMap(list<pair<double, int> > destinationMap) {
         m_destinationMap = destinationMap;
     }
 
@@ -83,17 +95,19 @@ public:
         m_highwayId = -100000;
         m_wifiConfigId = -10000;
         m_flow = 1.0;
-        m_velocity = 11.176;
+        m_lowVelocity = 11.176;
+        m_highVelocity = 11.176;
         m_minGap = 33.0;
         m_penetrationRate = 100.0;
-        m_destinationMap = map<double, int>();
+        m_destinationMap = list<pair<double, int> >();
 
         TiXmlElement* rootPtr = root.Element();
         if (rootPtr) {
             rootPtr->QueryIntAttribute("highwayId", &m_highwayId);
             rootPtr->QueryIntAttribute("wifiConfigId", &m_wifiConfigId);
             rootPtr->QueryDoubleAttribute("flow", &m_flow);
-            rootPtr->QueryDoubleAttribute("velocity", &m_velocity);
+            rootPtr->QueryDoubleAttribute("lowVelocity", &m_lowVelocity);
+            rootPtr->QueryDoubleAttribute("highVelocity", &m_highVelocity);
             rootPtr->QueryDoubleAttribute("minGap", &m_minGap);
             rootPtr->QueryDoubleAttribute("penetrationRate", &m_penetrationRate);
 
@@ -104,7 +118,7 @@ public:
             for(TiXmlElement* destPtr = destHandle.Element(); destPtr; destPtr = destPtr->NextSiblingElement()) {
                 destPtr->QueryDoubleAttribute("weight", &weight);
                 destPtr->QueryIntAttribute("destinationId", &dest);
-                m_destinationMap[weight] = dest;
+                m_destinationMap.push_back(pair<double,int>(weight,dest));
             }
 
         }

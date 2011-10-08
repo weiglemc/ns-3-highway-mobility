@@ -11,6 +11,7 @@
 #include "tinyxml.h"
 #include <stdlib.h>
 #include <string>
+#include <iostream>
 
 using namespace std;
 
@@ -64,7 +65,7 @@ public:
 
             TiXmlHandle leftTurnHandle = root.FirstChildElement("leftTurnLane");
             for (TiXmlElement* leftTurnElement = leftTurnHandle.Element(); leftTurnElement; leftTurnElement = leftTurnElement->NextSiblingElement()) {
-                leftTurnLanes.push_back(atoi(leftTurnElement->Value()));
+                leftTurnLanes.push_back(atoi(leftTurnElement->GetText()));
             }
 
         }

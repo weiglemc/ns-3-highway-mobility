@@ -18,62 +18,98 @@
 using namespace std;
 using namespace ns3;
 
+/**
+ * This utility function calculates the routing maps used for the Highways
+ * It uses Dijkstra's algorithm to calculate a map of each HighwayId to its previous
+ * HighwayId.  A node is a Highway.  There is one edge per Highway connection
+ */
 map<int, int> HighwayProject::Djikstra(int source, map<int, list<int> > connectionList) {
+    // Create a map of distances to particular Highways
     map<int, double> distanceMap;
 
+    // Create the retern map
     map<int, int> previousMap;
+    // The set of all visited nodes
     set<int> allNodes;
 
+    // For each of the highways in available, initialize distance to max
     for (map<int, Ptr<Highway> >::iterator it = m_highways.begin(); it != m_highways.end(); it++) {
         distanceMap[it->first] = numeric_limits<double>::max();
         allNodes.insert(it->first);
     }
 
+    // Set the distance map distance from the source to 0
     distanceMap[source] = 0.0;
 
+    // Until we have visited all nodes
     while (!allNodes.empty()) {
+        // Get the shortest next distance
         double distance = numeric_limits<double>::max();
+        // The current node to start searching from
         int currentNode = -1;
         for (set<int>::iterator it = allNodes.begin(); it != allNodes.end(); it++) {
+            // Iterate over remaining nodes to find the one with the shortest distance
             if (distanceMap[(*it)] < distance) {
                 distance = distanceMap[(*it)];
                 currentNode = *it;
             }
         }
 
+        // If we have nowhere left to go
         if (distance == numeric_limits<double>::max()) {
+            // break
             break;
         }
 
+        // Remove the current node from the set of nodes
         allNodes.erase(currentNode);
 
+        // Find the current set of edges for the current node
         map<int, list<int> >::iterator it = connectionList.find(currentNode);
         if (it != connectionList.end()) {
+            // For each edge
             for (list<int>::iterator it2 = it->second.begin(); it2 != it->second.end(); it2++) {
+                // Check the distance along the edge
                 double currentDistance = m_highways[(*it2)]->GetHighwayLength();
+                // Find the edge with the shortest distance
                 if (distanceMap[(*it2)] == numeric_limits<double>::max() || (distanceMap[(*it2)] < distance + currentDistance)) {
+                    //Update the distance
                     distanceMap[(*it2)] = distance + currentDistance;
+                    //Update the previous map
                     previousMap[(*it2)] = (it->first);
                 }
             }
         }
     }
 
+    // Return the step map
     return previousMap;
 }
 
+/**
+ * Create the HighwayProject for the supplied configuration data
+ */
 HighwayProject::HighwayProject(HighwayProjectXml projectXml) {
+    //Get the step distance
     m_dt = projectXml.GetDt();
+    //Initialize the collections
     m_vehGens = list<Ptr<VehicleGenerator> >();
     m_highways = map<int, Ptr<Highway> >();
     m_trafficGens = list<Ptr<TrafficLightGenerator> >();
+    //Set the project xml
     m_projectXml = projectXml;
+
+    //Initialize the edge list map
     map<int, list<int > > nodes;
 
+    //Get all of the highwayxml
     list<HighwayXml> xmlHighways = projectXml.GetHighways();
+    //For each of the highway configuration
     for (list<HighwayXml>::iterator it = xmlHighways.begin(); it != xmlHighways.end(); it++) {
         HighwayXml highwayXml = *it;
+        //Create a new Highway
         Ptr<Highway> newHighway = CreateObject<Highway > ();
+        //Configure the Highway
         newHighway->SetHighwayId(highwayXml.GetHighwayId());
         newHighway->SetHighwayLength(highwayXml.GetLength());
         newHighway->SetDirection(highwayXml.GetDirection());
@@ -84,9 +120,11 @@ HighwayProject::HighwayProject(HighwayProjectXml projectXml) {
         newHighway->SetLeftTurnSpeed(highwayXml.GetLeftTurnSpeed());
         newHighway->SetRightTurnSpeed(highwayXml.GetRightTurnSpeed());
         newHighway->InitHighway();
+        //Put the highway int the map
         m_highways[highwayXml.GetHighwayId()] = newHighway;
     }
 
+    //Have to iterate again to create connections
     for (list<HighwayXml>::iterator it = xmlHighways.begin(); it != xmlHighways.end(); it++) {
         HighwayXml highwayXml = *it;
         Ptr<Highway> highway = m_highways[highwayXml.GetHighwayId()];
@@ -178,11 +216,17 @@ HighwayProject::HighwayProject(HighwayProjectXml projectXml) {
         }
 
         Ptr<VehicleGenerator> generator = CreateObject<VehicleGenerator > (highway);
+        generator->SetFlow(genXml.GetFlow());
+        generator->SetLowVelocity(genXml.GetLowVelocity());
+        generator->SetHighVelocity(genXml.GetHighVelocity());
+        generator->SetMinGap(genXml.GetMinGap());
+        generator->SetPenetrationRate(genXml.GetPenetrationRate());
+        generator->SetDestinationMap(genXml.GetDestinationMap());
         m_vehGens.push_back(generator);
         
-        generator->setWifiHelper(wifiConfig.GetWifiHelper());
-        generator->setNqosWifiMacHelper(wifiConfig.GetWifiMacHelper());
-        generator->setYansWifiPhyHelper(wifiConfig.GetWifiPhyHelper());
+        generator->SetWifiHelper(wifiConfig.GetWifiHelper());
+        generator->SetNqosWifiMacHelper(wifiConfig.GetWifiMacHelper());
+        generator->SetYansWifiPhyHelper(wifiConfig.GetWifiPhyHelper());
 
     }
 
@@ -294,6 +338,9 @@ void HighwayProject::Start() {
     m_netTrace.open(m_netTraceFileName.c_str());
     for(list<Ptr<VehicleGenerator> >::iterator it = m_vehGens.begin(); it != m_vehGens.end(); it++) {
         (*it)->init();
+    }
+    for(list<Ptr<TrafficLightGenerator> >::iterator it = m_trafficGens.begin(); it != m_trafficGens.end(); it++) {
+        (*it)->Start();
     }
     Simulator::Schedule(Seconds(0.0), &Step, this);
     Simulator::Stop(Seconds(m_projectXml.GetTotalTimeInSeconds()));

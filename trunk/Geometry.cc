@@ -119,15 +119,15 @@ double angleToPoint(double startX, double startY, double endX, double endY) {
             double tempVal = atan(numerator / denominator);
             if (numerator > 0) {
                 if (denominator > 0) {
-                    return tempVal;
+                    return M_PI/2.0 - tempVal;
                 } else {
-                    return tempVal + (2 * M_PI);
+                    return fabs(tempVal) + (3 * M_PI / 2.0);
                 }
             } else {
                 if (denominator > 0) {
-                    return tempVal + M_PI;
+                    return fabs(tempVal) + M_PI/2.0;
                 } else {
-                    return tempVal + M_PI;
+                    return ((M_PI/2.0) - fabs(tempVal)) + M_PI;
                 }
             }
         }

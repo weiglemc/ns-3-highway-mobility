@@ -1,6 +1,6 @@
 /* -*-  Mode: C++; c-file-style: "gnu"; indent-tabs-mode:nil; -*- */
 /*
- * Copyright (c) 2005-2009 Old Dominion University [ARBABI]
+ * Copyright (c) 2005-2011 Old Dominion University [ARBABI]
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License version 2 as
@@ -74,6 +74,7 @@ namespace ns3 {
         m_leftOffsets = new int [1];
 
         m_changeLaneSet = true;
+        m_loop = 0;
 
         //Initialize the routing map
         m_routingMap = std::map<int, TurningType > ();
@@ -484,6 +485,7 @@ namespace ns3 {
             for (VehicleList::iterator itr = vList->begin(); itr != vList->end(); itr++) {
                 if ((*itr)->GetVehicleId() == vid) {
                     vList->erase(itr);
+                    break;
                 }
             }
 
@@ -700,12 +702,11 @@ namespace ns3 {
     //This function is the point of entry for controlling vehicles in the Highway
 
     void Highway::TranslateVehicles() {
-        static int loop = 0;
 
         //Only every tenth loop do we try to change lanes
         // NOTE: ORDER OF CALLING THIS FUNCTIONS IS VERY VERY IMPORTANT (EFFECT OF CURRENT SPEED, POSITION, DECICION)
-        if (loop == 10) loop = 0;
-        if (loop == 0 && m_changeLaneSet == true) {
+        if (m_loop == 10) m_loop = 0;
+        if (m_loop == 0 && m_changeLaneSet == true) {
             if (m_changeLaneSet) {
                 ChangeLane();
             }
@@ -717,7 +718,7 @@ namespace ns3 {
         //Then we modify the accelerations of the vehicles for the next loop
         Accelerate(m_dt);
 
-        loop++;
+        m_loop++;
 
     }
 
@@ -1226,6 +1227,10 @@ namespace ns3 {
         //For each vehicle in this lane
         for (uint i = 0; i < sLane->size(); i++) {
             Ptr<Vehicle> curVeh = GetVehicle(sideLane, i);
+            //Ignore stop lights when determining lane changing
+            if(curVeh->GetVehicleType() == 2) {
+                continue;
+            }
             //If this vehicle is in front of the point
             if (!anglesEqual(curVeh->GetDirection(), angleToPoint(curVeh->GetPosition().x, curVeh->GetPosition().y, intersectionPoint[1], intersectionPoint[2]))) {
                 //set it as the forward index
