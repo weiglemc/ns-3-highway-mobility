@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
+  <xs:element name="highwayProject">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="highways"/>
+        <xs:element ref="wifiConfigurations"/>
+        <xs:element ref="vehicleGenerators"/>
+        <xs:element ref="trafficLightGenerators"/>
+      </xs:sequence>
+      <xs:attribute name="dt" use="required" type="xs:decimal"/>
+      <xs:attribute name="numberOfRuns" use="required" type="xs:integer"/>
+      <xs:attribute name="totalTimeInSeconds" use="required" type="xs:integer"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="highways">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element maxOccurs="unbounded" ref="highway"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="highway">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" ref="frontHighways"/>
+        <xs:element minOccurs="0" ref="backHighways"/>
+        <xs:element minOccurs="0" ref="rightHighways"/>
+        <xs:element minOccurs="0" ref="leftHighways"/>
+      </xs:sequence>
+      <xs:attribute name="direction" use="required" type="xs:decimal"/>
+      <xs:attribute name="highwayId" use="required" type="xs:integer"/>
+      <xs:attribute name="laneWidth" use="required" type="xs:decimal"/>
+      <xs:attribute name="leftTurnSpeed" use="required" type="xs:decimal"/>
+      <xs:attribute name="length" use="required" type="xs:decimal"/>
+      <xs:attribute name="numberOfLanes" use="required" type="xs:integer"/>
+      <xs:attribute name="rightTurnSpeed" use="required" type="xs:decimal"/>
+      <xs:attribute name="startX" use="required" type="xs:decimal"/>
+      <xs:attribute name="startY" use="required" type="xs:decimal"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="frontHighways" type="highwayConnection"/>
+  <xs:element name="backHighways" type="highwayConnection"/>
+  <xs:element name="rightHighways" type="highwayConnection"/>
+  <xs:element name="leftHighways" type="highwayConnection"/>
+  <xs:element name="wifiConfigurations">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="wifiConfiguration"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="wifiConfiguration">
+    <xs:complexType>
+      <xs:attribute name="dataMode" use="required" type="xs:NCName"/>
+      <xs:attribute name="energyDetectionThreshold" use="required" type="xs:decimal"/>
+      <xs:attribute name="rxGain" use="required" type="xs:decimal"/>
+      <xs:attribute name="txGain" use="required" type="xs:decimal"/>
+      <xs:attribute name="txPowerEnd" use="required" type="xs:decimal"/>
+      <xs:attribute name="txPowerLevels" use="required" type="xs:integer"/>
+      <xs:attribute name="txPowerStart" use="required" type="xs:decimal"/>
+      <xs:attribute name="wifiConfigId" use="required" type="xs:integer"/>
+      <xs:attribute name="wifiStandard" use="required" type="xs:NCName"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="vehicleGenerators">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element maxOccurs="unbounded" ref="vehicleGenerator"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="vehicleGenerator">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element maxOccurs="unbounded" ref="destination"/>
+      </xs:sequence>
+      <xs:attribute name="flow" use="required" type="xs:decimal"/>
+      <xs:attribute name="highVelocity" use="required" type="xs:decimal"/>
+      <xs:attribute name="highwayId" use="required" type="xs:integer"/>
+      <xs:attribute name="lowVelocity" use="required" type="xs:decimal"/>
+      <xs:attribute name="minGap" use="required" type="xs:decimal"/>
+      <xs:attribute name="penetrationRate" use="required" type="xs:decimal"/>
+      <xs:attribute name="wifiConfigId" use="required" type="xs:integer"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="destination">
+    <xs:complexType>
+      <xs:attribute name="destinationId" use="required" type="xs:integer"/>
+      <xs:attribute name="weight" use="required" type="xs:decimal"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="trafficLightGenerators">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="trafficGenerator"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="trafficGenerator">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element maxOccurs="unbounded" ref="trafficPoint"/>
+      </xs:sequence>
+      <xs:attribute name="timeBuffer" use="required" type="xs:decimal"/>
+      <xs:attribute name="timeLeft" use="required" type="xs:decimal"/>
+      <xs:attribute name="timeStraight" use="required" type="xs:decimal"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="trafficPoint">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element ref="leftTurnLane"/>
+      </xs:sequence>
+      <xs:attribute name="distance" use="required" type="xs:decimal"/>
+      <xs:attribute name="highwayId" use="required" type="xs:integer"/>
+      <xs:attribute name="side" use="required" type="xs:NCName"/>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="leftTurnLane" type="xs:integer"/>
+  <xs:complexType name="highwayConnection">
+    <xs:attribute name="highwayId" use="required" type="xs:integer"/>
+    <xs:attribute name="laneOffset" use="required" type="xs:integer"/>
+    <xs:attribute name="offset" use="required" type="xs:integer"/>
+  </xs:complexType>
+</xs:schema>

@@ -1,0 +1,5 @@
+<highwayProject numberOfRuns="1" totalTimeInSeconds="30" dt="0.1">
+  <highways>
+    <highway highwayId="0" numberOfLanes="2" direction="5.497787143782140" length="1000.0" startX="0.0" startY="5.0" leftTurnSpeed="2.2352" rightTurnSpeed="2.2352" laneWidth="5.0"/>
+  </highways>
+</highwayProject>
