@@ -40,7 +40,6 @@
 #include "ns3/random-variable.h"
 #include "math.h"
 #include "Highway.h"
-#include "Controller.h"
 #include "VehicleGenerator.h"
 #include "tinyxml.h"
 #include "HighwayProjectXml.h"
