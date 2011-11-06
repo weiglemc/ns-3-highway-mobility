@@ -262,6 +262,12 @@ HighwayProject::HighwayProject(HighwayProjectXml projectXml) {
 
 }
 
+void HighwayProject::SetVehicleControlCallback(Callback<bool, Ptr<Highway>, Ptr<Vehicle>, double> controllCallback) {
+    for(map<int, ns3::Ptr<ns3::Highway> >::iterator it = m_highways.begin(); it != m_highways.end(); it++) {
+        it->second->SetControlVehicleCallback(controllCallback);
+    }
+}
+
 void HighwayProject::VehicleReceive(ns3::Ptr<ns3::Vehicle> veh, ns3::Ptr<const ns3::Packet> p, ns3::Address add) {
     m_netTrace << Simulator::Now().GetNanoSeconds() << "," << veh->GetVehicleId() << ",Vehicle Receive,0" << endl;
 }

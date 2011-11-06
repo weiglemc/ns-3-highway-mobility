@@ -30,6 +30,7 @@
 #include <fstream>
 #include <iostream>
 #include <iomanip>
+#include "Model.h"
 #include "ns3/core-module.h"
 #include "ns3/common-module.h"
 #include "ns3/node-module.h"
@@ -52,25 +53,65 @@ NS_LOG_COMPONENT_DEFINE("HADI");
 using namespace ns3;
 using namespace std;
 
-//static void Start(Ptr<Highway> highway, Ptr<Highway> highway2) {
-//    highway->Start();
-//    highway2->Start();
-//}
-//
-//static void Stop(Ptr<Highway> highway, Ptr<Highway> highway2) {
-//    highway->Stop();
-//    highway2->Stop();
-//}
-/*
-static void AddLight(Ptr<Highway> highway) {
-    Ptr<Vehicle> light = CreateObject<Obstacle > ();
-    light->SetVehicleType(2);
-    light->SetPosition(Vector3D(800, -5, 0.0));
-    light->SetVehicleId(-1000);
-    light->SetLane(1);
-    highway->AddVehicle(light);
+ifstream dataFile;
+
+static void addCustomVehicle(Ptr<Highway> highway) {
+    int id = -1;
+    int lane = 1;
+    double speed = 40.0;
+
+    Ptr<Model> model = CreateObject<Model>();
+    model->SetDesiredVelocity(speed);
+    model->SetDeltaV(4.0);
+    model->SetAcceleration(0.5);  
+    model->SetDeceleration(3.0);  
+    model->SetMinimumGap(2.0);
+    model->SetTimeHeadway(0.1);
+    model->SetSqrtAccelerationDeceleration(sqrt(model->GetAcceleration() * model->GetDeceleration()));
+
+    Ptr<LaneChange> laneChange = CreateObject<LaneChange>();
+    laneChange->SetPolitenessFactor(0.2);
+    laneChange->SetDbThreshold(0.3);
+    laneChange->SetGapMin(2.0);
+    laneChange->SetMaxSafeBreakingDeceleration(12.0);
+    laneChange->SetBiasRight(0.2);
+
+    Ptr<Vehicle> temp=CreateObject<Vehicle>();
+    temp->SetVehicleId(id);
+		temp->IsEquipped=false;
+    temp->SetModel(model);
+    temp->SetLaneChange(laneChange);
+    temp->SetLength(4);
+    temp->SetWidth(2);
+    temp->SetVelocity(speed);
+    temp->SetAcceleration(0.0);
+    temp->SetLane(lane);
+    temp->SetDirection(0.0);
+    temp->SetPosition(highway->GetLaneStart(lane));
+    highway->AddVehicleToBeginning(temp);
 }
- * */
+
+static int msgCounter = 0;
+
+static bool controlVehicle(Ptr<Highway> highway, Ptr<Vehicle> veh, double dt) {
+
+
+    if ((veh->GetVehicleId() == 1) && (msgCounter == 499)) {
+        stringstream msg;
+        msg << veh->GetVehicleId() 
+            << " x=" << veh->GetPosition().x 
+            << " y=" << veh->GetPosition().y
+            << " v=" << veh->GetVelocity()
+            << " d=" << veh->GetDirection()
+            << " l=" << veh->GetLane();
+        
+        Ptr<Packet> packet = Create<Packet>((uint8_t*) msg.str().c_str(), msg.str().length());
+
+        veh->SendTo(veh->GetBroadcastAddress(), packet);
+    }
+    msgCounter = (msgCounter + 1)%500;
+    return false;
+}
 
 int main(int argc, char *argv[]) {
     string projectXmlFile = "";
@@ -83,6 +124,7 @@ int main(int argc, char *argv[]) {
     bool enablePhyTxTrace = false;
     bool enablePhyStateTrace = false;
 
+    dataFile.open("/home/bdupont/vehicleTestInfo2.txt");
 
     CommandLine cmd;
     cmd.AddValue("project", "highway xml description", projectXmlFile);
@@ -112,6 +154,30 @@ int main(int argc, char *argv[]) {
     HighwayProject project(xml);
     project.SetVehTraceFile(vehicleTraceFile);
     project.SetNetTraceFile(networkTraceFile);
+    if(enableVehicleReceive) {
+        project.EnableVehicleReceive();
+    }
+    if(enableDeviceTrace) {
+        project.EnableDeviceTrace();
+    }
+    if(enablePhyRxOkTrace) {
+        project.EnablePhyRxOkTrace();
+    }
+    if(enablePhyRxErrorTrace) {
+        project.EnablePhyRxErrorTrace();
+    }
+    if(enablePhyTxTrace) {
+        project.EnablePhyTxTrace();
+    }
+    if(enablePhyStateTrace) {
+        project.EnablePhyStateTrace();
+    }
+    
+    Ptr<Highway> highway = project.getHighways()[0];
+    Simulator::Schedule(Seconds(10), &addCustomVehicle, highway);
+    project.SetVehicleControlCallback(MakeCallback(&controlVehicle));
+    
+    
     project.Start();
 
     Simulator::Run();

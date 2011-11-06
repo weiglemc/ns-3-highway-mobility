@@ -122,6 +122,8 @@ public:
     void PhyStateTrace(ns3::Ptr<ns3::Vehicle> veh, std::string context, ns3::Time start, ns3::Time duration, enum ns3::WifiPhy::State state);
     void EnablePhyStateTrace();
 
+    void SetVehicleControlCallback(Callback<bool, Ptr<Highway>, Ptr<Vehicle>, double> controllCallback);
+
     // Calls the next step on the simulation
     static void Step(HighwayProject* project);
 

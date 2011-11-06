@@ -1,5 +1,14 @@
 <highwayProject numberOfRuns="1" totalTimeInSeconds="30" dt="0.1">
   <highways>
-    <highway highwayId="0" numberOfLanes="2" direction="5.497787143782140" length="1000.0" startX="0.0" startY="5.0" leftTurnSpeed="2.2352" rightTurnSpeed="2.2352" laneWidth="5.0"/>
+    <highway highwayId="0" numberOfLanes="2" direction="0.0" 
+    length="1000.0" startX="0.0" startY="5.0" leftTurnSpeed="2.2352" rightTurnSpeed="2.2352" laneWidth="5.0"/>
   </highways>
+  <wifiConfigurations>
+    <wifiConfiguration wifiConfigId="1" wifiStandard="WIFI_PHY_STANDARD_80211a" dataMode="OfdmRate6MbpsBW10MHz" txPowerStart="21.5" txPowerEnd="21.5" txPowerLevels="1" txGain="2.0" rxGain="2.0" energyDetectionThreshold="-101.0"/>
+  </wifiConfigurations>
+  <vehicleGenerators>
+    <vehicleGenerator highwayId="0" wifiConfigId="1" flow="1.0" 
+    lowVelocity="18.1168" highVelocity="23.1168" minGap="45.0" 
+    penetrationRate="100.0" />
+  </vehicleGenerators>
 </highwayProject>
