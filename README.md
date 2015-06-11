@@ -1,4 +1,4 @@
-# ns-3-highway-mobility
+# VANET Highway Mobility for NS-3
 *Automatically exported from code.google.com/p/ns-3-highway-mobility*
 
 The study of vehicular ad-hoc networks (VANETs) requires efficient and accurate simulation tools. As the mobility of vehicles 
