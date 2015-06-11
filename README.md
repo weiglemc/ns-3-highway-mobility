@@ -11,7 +11,7 @@ model that manages vehicle mobility, while allowing for various user customizati
 implementation of the mobility model matches that of the model’s author and provide an example of using our implementation in 
 ns-3.
 
-Note: This software is no longer being actively maintained. The last updates were made in December 2011.
+Note: The source code is delivered 'as-is', and we cannot offer any support. Code last updated December 2011.
 
 Citation Request: If you use this in your work, please cite 
 
