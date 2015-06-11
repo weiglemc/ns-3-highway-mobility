@@ -19,3 +19,8 @@ Citation Request: If you use this in your work, please cite
 > Simulation Conference*. Baltimore, MD, December 2010, pp. 2991-3003.
  * http://dx.doi.org/10.1109/WSC.2010.5678993
  * http://www.cs.odu.edu/~mweigle/papers/arbabi-wsc10.pdf
+
+and
+
+> Bradley Dupont, "Improvements in VANET Simulator in ns-3", Masters Project, Department of Computer Science, Old Dominion University, December 2011.
+* http://www.cs.odu.edu/~mweigle/papers/dupont-ms-proj-11.pdf
